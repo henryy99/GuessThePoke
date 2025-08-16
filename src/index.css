@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --clr-blue-main: #2873b3;
+  --clr-yellow-main: #f8d520;
+  --clr-red-main: #f03d42;
+  --clr-green-main: #2cb625;
+}
+
+/*
+red:rgba(240, 61, 66, 1)
+*/
+@theme {
+  --color-red-main: var(--clr-red-main);
+  --color-green-main: var(--clr-green-main);
+  --color-yellow-main: var(--clr-yellow-main);
+  --color-blue-main: var(--clr-blue-main);
+}

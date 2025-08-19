@@ -1,4 +1,6 @@
+import { usePokemon } from "../context/PokemonContext";
 function Header() {
+  const { state } = usePokemon();
   return (
     <div className="pokedex-wrapper">
       <div className="pokedex-header">
@@ -7,6 +9,10 @@ function Header() {
           <div className="h-5 w-5 bg-red-main rounded-2xl"></div>
           <div className="h-5 w-5 bg-yellow-main rounded-2xl"></div>
           <div className="h-5 w-5 bg-green-main rounded-2xl"></div>
+
+          <p>{state.currentGuess}</p>
+          <p>{state.pokemonName}</p>
+          <p>{state.currentGuess.length}</p>
         </div>
       </div>
       <div className="pokedex-border"></div>

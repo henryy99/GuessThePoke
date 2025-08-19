@@ -1,10 +1,15 @@
-function Hint({ hints }) {
+function Hint({ wrongGuesses, hints }) {
   return (
-    <div className="flex justify-center gap-2 mb-[2rem]">
+    <div className={`flex justify-center gap-2 mb-[2rem]`}>
       {hints.map((hint, i) => (
-        <span key={i} className="bg-amber-50 w-10 h-10 ">
+        <div
+          key={i}
+          className={`bg-amber-50  w-10 h-10 flex items-center justify-center ${
+            wrongGuesses > i ? "hint" : "hidden-hint"
+          }`}
+        >
           {hint}
-        </span>
+        </div>
       ))}
     </div>
   );

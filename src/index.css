@@ -16,3 +16,13 @@ red:rgba(240, 61, 66, 1)
   --color-yellow-main: var(--clr-yellow-main);
   --color-blue-main: var(--clr-blue-main);
 }
+
+.hint {
+  color: black;
+  transition-property: color;
+  transition-duration: 1s;
+}
+
+.hidden-hint {
+  color: transparent;
+}

@@ -1,11 +1,15 @@
-function Hint({ wrongGuesses, hints }) {
+import { usePokemon } from "../context/PokemonContext";
+
+function Hint() {
+  const { state } = usePokemon();
+
   return (
     <div className={`flex justify-center gap-2 mb-[2rem]`}>
-      {hints.map((hint, i) => (
+      {state.hints.map((hint, i) => (
         <div
           key={i}
-          className={`bg-amber-50  w-10 h-10 flex items-center justify-center ${
-            wrongGuesses > i ? "hint" : "hidden-hint"
+          className={`bg-[#e3e3e1] rounded-md w-10 h-10 flex items-center font-bold  text-[20px] justify-center ${
+            state.wrongGuessesCount > i ? "" : "hidden-hint"
           }`}
         >
           {hint}

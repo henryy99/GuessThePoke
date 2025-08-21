@@ -2,9 +2,9 @@
 
 :root {
   --clr-blue-main: #2873b3;
-  --clr-yellow-main: #f8d520;
-  --clr-red-main: #f03d42;
-  --clr-green-main: #2cb625;
+  --clr-yellow-main: #f8d420dd;
+  --clr-red-main: #f03d43dd;
+  --clr-green-main: #2cb625dd;
 }
 
 /*
@@ -15,12 +15,6 @@ red:rgba(240, 61, 66, 1)
   --color-green-main: var(--clr-green-main);
   --color-yellow-main: var(--clr-yellow-main);
   --color-blue-main: var(--clr-blue-main);
-}
-
-.hint {
-  color: black;
-  transition-property: color;
-  transition-duration: 1s;
 }
 
 .hidden-hint {

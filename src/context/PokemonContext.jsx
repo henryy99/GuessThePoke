@@ -25,7 +25,7 @@ export function PokemonProvider({ children }) {
         dispatch({ type: "setPokemonName", payload: pokemonData.name });
 
         dispatch({
-          type: "setHints",
+          type: "SET_HINTS",
           payload: [
             getPokemonTypeIcon(pokemonData.types[0].type.name),
             getPokemonTypeIcon(pokemonData.types[1]?.type.name) ?? "none",

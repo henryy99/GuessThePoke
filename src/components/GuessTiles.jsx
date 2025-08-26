@@ -8,7 +8,7 @@ function Line({ state, guess, isCurrentGuess }) {
     const className = getTileClass(char, i, state, isCurrentGuess);
     tiles.push(
       <span
-        className={`bg-[#e3e3e1] w-10 h-10 flex items-center justify-center border-0 border-gray-200 rounded-sm  text-2xl font-bold ${className}`}
+        className={`bg-[#e3e3e1] w-10 h-10  flex items-center justify-center border-0 border-gray-200 rounded-sm  text-2xl font-bold ${className}`}
         key={i}
       >
         {char ? char.toUpperCase() : ""}
@@ -23,7 +23,7 @@ function PokedexBody() {
   const { state, dispatch } = usePokemon();
 
   return (
-    <div className="container flex flex-col gap-2 items-center justify-center mb-[20px]">
+    <div className="flex flex-col gap-2 items-center justify-center mb-[20px]">
       {state.guesses.map((guess, index) => {
         return (
           <Line

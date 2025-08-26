@@ -14,6 +14,7 @@ function Keyboard() {
     (letter) => {
       if (state.isGameOver) return;
       if (state.typedGuess.length > state.pokemonName.length) return;
+
       if (letter === "Backspace") {
         dispatch({ type: "REMOVE_LAST_CHAR" });
         return;
@@ -25,6 +26,9 @@ function Keyboard() {
           dispatch({ type: "GAME_OVER" });
         }
         dispatch({ type: "ADD_GUESS" });
+        if (state.wrongGuessesCount === 4) {
+          dispatch({ type: "GAME_OVER" });
+        }
         return;
       }
       dispatch({ type: "ADD_CHAR", payload: letter.toLowerCase() });
@@ -33,6 +37,15 @@ function Keyboard() {
   );
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (
+        e.metaKey ||
+        e.ctrlKey ||
+        e.tabKey ||
+        e.key === "CapsLock" ||
+        e.altKey ||
+        e.shiftKey
+      )
+        return; // Ignore meta and ctrl keys
       handleClick(e.key);
 
       // setCurrentGuess
@@ -46,7 +59,7 @@ function Keyboard() {
       {alphabet.map((letters) => (
         <div
           key={letters}
-          className="flex justify-center w-[95%] md:w-[50%] mx-auto gap-1"
+          className="flex justify-center w-[95%]  mx-auto gap-1"
         >
           {letters.map((letter, index) => {
             if (letter === " ")

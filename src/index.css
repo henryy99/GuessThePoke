@@ -5,6 +5,7 @@
   --clr-yellow-main: #f8d420dd;
   --clr-red-main: #f03d43dd;
   --clr-green-main: #2cb625dd;
+  --clr-blue-light: #22a9fc;
 }
 
 /*
@@ -15,8 +16,48 @@ red:rgba(240, 61, 66, 1)
   --color-green-main: var(--clr-green-main);
   --color-yellow-main: var(--clr-yellow-main);
   --color-blue-main: var(--clr-blue-main);
+  --color-blue-light: var(--clr-blue-light);
 }
 
-.hidden-hint {
-  color: transparent;
+@font-face {
+  font-family: Pokemon;
+  src: url(/pokemon-solid-font/PokemonSolidNormal-xyWR.ttf);
+}
+
+.pokedex-header {
+  background-color: var(--clr-yellow-main);
+  clip-path: polygon(0 0, 0 100%, 40% 100%, 45% 70%, 100% 70%, 100% 0%);
+}
+.hint-text {
+  opacity: 1;
+  animation: revealText 0.5s ease-in-out;
+}
+.hidden-hint-text {
+  opacity: 0;
+}
+
+.pokedex-body {
+  clip-path: polygon(
+    0 100%,
+    100% 100%,
+    100% 0.5%,
+    46% 0.5%,
+    41% 4%,
+    0 4%,
+    0 100%
+  );
+}
+.link-text {
+  font-family: Pokemon;
+  color: red;
+}
+@keyframes revealText {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

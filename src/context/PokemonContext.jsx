@@ -29,9 +29,14 @@ export function PokemonProvider({ children }) {
           payload: [
             getPokemonTypeIcon(pokemonData.types[0].type.name),
             getPokemonTypeIcon(pokemonData.types[1]?.type.name) ?? "none",
-            pokemonSpeciesData.habitat.name ?? "unknown",
             pokemonSpeciesData.color.name,
+            pokemonSpeciesData.habitat.name ?? "unknown",
           ],
+        });
+
+        dispatch({
+          type: "SET_SPRITE",
+          payload: pokemonData.sprites.other["official-artwork"].front_default,
         });
       } catch (error) {
         console.log("Error fetching pokemon", error);

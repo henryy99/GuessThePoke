@@ -8,11 +8,17 @@ function Hint() {
       {state.hints.map((hint, i) => (
         <div
           key={i}
-          className={`bg-[#e3e3e1] rounded-md w-10 h-10 flex items-center font-bold  text-[20px] justify-center ${
+          className={`bg-[#e3e3e1] rounded-md w-15 h-15 flex items-center font-bold  text-[25px] justify-center ${
             state.wrongGuessesCount > i ? "" : "hidden-hint"
           }`}
         >
-          {hint}
+          <span
+            className={`${
+              state.wrongGuessesCount > i ? "hint-text" : "hidden-hint-text"
+            }`}
+          >
+            {hint}
+          </span>
         </div>
       ))}
     </div>

@@ -6,6 +6,7 @@ export const initialState = {
   hints: Array(4).fill(null),
   isGameOver: false,
   wrongGuessesCount: 0,
+  pokemonSprite: "",
 };
 
 export function reducer(state, action) {
@@ -42,6 +43,8 @@ export function reducer(state, action) {
         ...state,
         typedGuess: state.typedGuess.slice(0, -1),
       };
+    case "SET_SPRITE":
+      return { ...state, pokemonSprite: action.payload };
     default:
       throw new Error(`Unknown action type: ${action.type}`);
   }

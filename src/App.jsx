@@ -4,24 +4,25 @@ import Keyboard from "./components/Keyboard";
 import PokedexBody from "./ui/PokedexBody";
 import PokemonImage from "./components/PokemonImage";
 import GuessTiles from "./components/GuessTiles";
-import { PokemonProvider } from "./context/PokemonContext";
+
 import Nav from "./components/Nav";
 
+import { UserProvider } from "./context/UserContext";
+import { Route, Routes } from "react-router";
+import HomePage from "./pages/home/HomePage";
+import Pokeguess from "./pages/pokeguess/Pokeguess";
+import Pokedex from "./pages/pokedex/Pokedex";
 function App() {
   return (
     <>
-      <Nav />
-      <PokemonProvider>
-        <div className="pokedex-wrap border-[3px] border-[#152345] max-w-[500px] mx-auto relative ">
-          <Header />
-          <PokedexBody>
-            <PokemonImage />
-            <Hint />
-            <GuessTiles />
-            <Keyboard />
-          </PokedexBody>
-        </div>
-      </PokemonProvider>
+      <div className="w-screen h-screen">
+        <Nav />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pokeguess" element={<Pokeguess />} />
+          <Route path="/pokedex" element={<Pokedex />} />
+        </Routes>
+      </div>
     </>
   );
 }

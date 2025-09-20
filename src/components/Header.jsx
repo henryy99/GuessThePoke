@@ -24,7 +24,6 @@ function Header() {
           </div>
         </div>
       </div>
-      <div className="pokedex-border"></div>
     </div>
   );
 }

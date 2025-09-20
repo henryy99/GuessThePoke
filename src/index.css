@@ -17,11 +17,15 @@ red:rgba(240, 61, 66, 1)
   --color-yellow-main: var(--clr-yellow-main);
   --color-blue-main: var(--clr-blue-main);
   --color-blue-light: var(--clr-blue-light);
-}
-
-@font-face {
-  font-family: Pokemon;
-  src: url(/pokemon-solid-font/PokemonSolidNormal-xyWR.ttf);
+  --animate-slide-to-left: slideRightToLeft 3s ease-in;
+  @keyframes slideRightToLeft {
+    0% {
+      transform: translateX(full);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
 
 .pokedex-header {
@@ -36,7 +40,7 @@ red:rgba(240, 61, 66, 1)
   opacity: 0;
 }
 
-.pokedex-body {
+/* .pokedex-body {
   clip-path: polygon(
     0 100%,
     100% 100%,
@@ -46,10 +50,38 @@ red:rgba(240, 61, 66, 1)
     0 4%,
     0 100%
   );
-}
+} */
 .link-text {
   font-family: Pokemon;
   color: red;
+}
+
+.start-button {
+  border: 2px solid white;
+  background-color: #f25545;
+  color: white;
+}
+
+.start-button:hover {
+  background-color: var(--clr-green-main);
+  color: white;
+  border: 2px solid var(--clr-green-main);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+.start-screen {
+  position: relative;
+}
+.start-screen::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://i.redd.it/7pnbiscd7rcb1.png");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.3;
 }
 @keyframes revealText {
   from {

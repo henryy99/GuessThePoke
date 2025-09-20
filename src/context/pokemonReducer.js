@@ -4,7 +4,7 @@ export const initialState = {
   currentGuessIndex: 0,
   guesses: Array(5).fill(null),
   hints: Array(4).fill(null),
-  isGameOver: false,
+  isGameOver: true,
   wrongGuessesCount: 0,
   pokemonSprite: "",
 };
@@ -18,8 +18,8 @@ export function reducer(state, action) {
         ...state,
         hints: state.hints.map((hint, index) => action.payload[index]),
       };
-    case "GAME_OVER":
-      return { ...state, isGameOver: true };
+    case "SET_GAME_OVER":
+      return { ...state, isGameOver: action.payload };
     case "ADD_CHAR":
       if (state.typedGuess.length >= state.pokemonName.length) return state;
       return { ...state, typedGuess: state.typedGuess + action.payload };
@@ -42,6 +42,15 @@ export function reducer(state, action) {
       return {
         ...state,
         typedGuess: state.typedGuess.slice(0, -1),
+      };
+    case "RESET_GAME":
+      return {
+        ...state,
+        typedGuess: "",
+        currentGuessIndex: 0,
+        guesses: Array(5).fill(null),
+        isGameOver: false,
+        wrongGuessesCount: 0,
       };
     case "SET_SPRITE":
       return { ...state, pokemonSprite: action.payload };

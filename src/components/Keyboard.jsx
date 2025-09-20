@@ -23,11 +23,11 @@ function Keyboard() {
         if (state.typedGuess.length < state.pokemonName.length) return;
 
         if (state.typedGuess.toUpperCase() === state.pokemonName) {
-          dispatch({ type: "GAME_OVER" });
+          dispatch({ type: "SET_GAME_OVER", payload: true });
         }
         dispatch({ type: "ADD_GUESS" });
         if (state.wrongGuessesCount === 4) {
-          dispatch({ type: "GAME_OVER" });
+          dispatch({ type: "SET_GAME_OVER", payload: true });
         }
         return;
       }

@@ -8,45 +8,45 @@ const MAX_POKEMON = 151;
 
 export function PokemonProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const fetchPokemon = async () => {
+    const randomId = Math.floor(Math.random() * MAX_POKEMON) + 1;
+    try {
+      const pokemonResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${randomId}`
+      );
+      const pokemonData = await pokemonResponse.json();
+      const pokemonSpeciesResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}`
+      );
+      const pokemonSpeciesData = await pokemonSpeciesResponse.json();
 
+      dispatch({ type: "setPokemonName", payload: pokemonData.name });
+
+      dispatch({
+        type: "SET_HINTS",
+        payload: [
+          getPokemonTypeIcon(pokemonData.types[0].type.name),
+          getPokemonTypeIcon(pokemonData.types[1]?.type.name) ?? "none",
+          pokemonSpeciesData.color.name,
+          pokemonSpeciesData.habitat.name ?? "unknown",
+        ],
+      });
+
+      dispatch({
+        type: "SET_SPRITE",
+        payload: pokemonData.sprites.other["official-artwork"].front_default,
+      });
+      dispatch({ type: "SET_GAME_OVER", payload: false });
+    } catch (error) {
+      console.log("Error fetching pokemon", error);
+    }
+  };
   useEffect(() => {
-    const fetchPokemon = async () => {
-      const randomId = Math.floor(Math.random() * MAX_POKEMON) + 1;
-      try {
-        const pokemonResponse = await fetch(
-          `https://pokeapi.co/api/v2/pokemon/${randomId}`
-        );
-        const pokemonData = await pokemonResponse.json();
-        const pokemonSpeciesResponse = await fetch(
-          `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}`
-        );
-        const pokemonSpeciesData = await pokemonSpeciesResponse.json();
-
-        dispatch({ type: "setPokemonName", payload: pokemonData.name });
-
-        dispatch({
-          type: "SET_HINTS",
-          payload: [
-            getPokemonTypeIcon(pokemonData.types[0].type.name),
-            getPokemonTypeIcon(pokemonData.types[1]?.type.name) ?? "none",
-            pokemonSpeciesData.color.name,
-            pokemonSpeciesData.habitat.name ?? "unknown",
-          ],
-        });
-
-        dispatch({
-          type: "SET_SPRITE",
-          payload: pokemonData.sprites.other["official-artwork"].front_default,
-        });
-      } catch (error) {
-        console.log("Error fetching pokemon", error);
-      }
-    };
     fetchPokemon();
   }, []);
 
   return (
-    <PokemonContext.Provider value={{ state, dispatch }}>
+    <PokemonContext.Provider value={{ state, dispatch, fetchPokemon }}>
       {children}
     </PokemonContext.Provider>
   );

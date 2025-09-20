@@ -10,10 +10,10 @@ function PokemonImage() {
   return (
     <>
       {isGameOver && isWin ? <Confetti /> : null}
-      <div className="flex justify-center pt-15 ">
+      <div className="flex justify-center ">
         <img
           src={
-            isGameOver
+            isGameOver && pokemonSprite
               ? pokemonSprite
               : "https://png.pngtree.com/png-clipart/20230823/original/pngtree-pokemon-game-symbol-pikachu-play-picture-image_8234794.png"
           }

@@ -1,7 +1,26 @@
-function PokedexBody({ children }) {
+import { useState } from "react";
+import ScoreBar from "../components/ScoreBar";
+import Keyboard from "../components/Keyboard";
+import PokemonImage from "../components/PokemonImage";
+import GuessTiles from "../components/GuessTiles";
+import GetUserName from "../components/GetUserName";
+import Hint from "../components/Hint";
+function PokedexBody() {
+  const [user, setUser] = useState("");
   return (
-    <div className="pokedex-body pb-5 max-w-[500px]  flex flex-col  gap-5 bg-gray-50 border-t-[3px] border-[#152345]">
-      {children}
+    <div className="pokedex-body  ">
+      {user ? (
+        <>
+          <ScoreBar name={user} />
+          <PokemonImage />
+          <Hint />
+          <GuessTiles />
+          <Keyboard />
+        </>
+      ) : (
+        ""
+      )}
+      {!user && <GetUserName onSetUser={setUser} />}
     </div>
   );
 }
